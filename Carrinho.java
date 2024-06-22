@@ -8,9 +8,15 @@ import java.util.ArrayList;
 
 public class Carrinho {
     private ArrayList<CartItem> items;
+    private String cupomAplicado;
+    private JTextField cupomTextField; // Campo de texto para o cupom
+    private JLabel totalLabel; // Label para exibir o valor total com desconto
 
     public Carrinho() {
         this.items = new ArrayList<>();
+        this.cupomAplicado = "";
+        this.cupomTextField = new JTextField(10);
+        this.totalLabel = new JLabel("Valor Total: R$ 0.00");
     }
 
     public void addItem(String imagePath, String price) {
@@ -27,6 +33,14 @@ public class Carrinho {
         double total = 0.0;
         for (CartItem item : items) {
             total += item.getTotalPrice();
+        }
+        return total;
+    }
+
+    public double getTotalValueComDesconto() {
+        double total = getTotalValue();
+        if (cupomAplicado.equals("Camisa10")) {
+            total *= 0.9; // Aplica 10% de desconto se o cupom "Camisa10" estiver aplicado
         }
         return total;
     }
@@ -62,9 +76,25 @@ public class Carrinho {
             panel.add(itemPanel);
         }
 
-        JLabel totalLabel = new JLabel("Valor Total: R$ " + String.format("%.2f", getTotalValue()));
+        totalLabel.setText("Valor Total: R$ " + String.format("%.2f", getTotalValueComDesconto()));
         totalLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(totalLabel);
+
+        // Adiciona campo de texto e botão para adicionar o cupom manualmente
+        JPanel cupomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JLabel cupomLabel = new JLabel("Cupom:");
+        JButton aplicarCupomButton = new JButton("Aplicar Cupom");
+        aplicarCupomButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String cupom = cupomTextField.getText().trim();
+                aplicarCupom(cupom);
+            }
+        });
+        cupomPanel.add(cupomLabel);
+        cupomPanel.add(cupomTextField);
+        cupomPanel.add(aplicarCupomButton);
+        panel.add(cupomPanel);
 
         JButton addPaymentButton = new JButton("Adicionar Forma de Pagamento");
         addPaymentButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -101,7 +131,16 @@ public class Carrinho {
         frame.setVisible(true);
     }
 
-    public void setVisible(boolean b) {
+    public void aplicarCupom(String codigo) {
+        if (codigo.equals("Camisa10")) {
+            cupomAplicado = codigo;
+            JOptionPane.showMessageDialog(null, "Cupom aplicado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Cupom inválido", "Erro", JOptionPane.ERROR_MESSAGE);
+            cupomAplicado = "";
+        }
+        // Atualiza o valor total exibido com ou sem desconto
+        totalLabel.setText("Valor Total: R$ " + String.format("%.2f", getTotalValueComDesconto()));
     }
 
     private static class CartItem {
@@ -138,9 +177,8 @@ public class Carrinho {
 
     public static void main(String[] args) {
         Carrinho carrinho = new Carrinho();
-        carrinho.addItem("/path/to/image1.jpg", "R$10,00");
-        carrinho.addItem("/path/to/image2.jpg", "R$15,00");
-        carrinho.addItem("/path/to/image1.jpg", "R$10,00"); // Teste para adicionar quantidade
+        carrinho.addItem("/path/to/camisa1.jpg", "R$50,00");
+        carrinho.addItem("/path/to/camisa2.jpg", "R$45,00");
 
         carrinho.displayCart();
     }
