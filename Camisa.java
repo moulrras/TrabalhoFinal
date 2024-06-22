@@ -35,10 +35,9 @@ public class Camisa {
                 priceLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
                 JButton addToCartButton = new JButton("Adicionar ao Carrinho");
-                int index = i;  // To use inside the lambda expression
+                int index = i;
                 addToCartButton.addActionListener(e -> {
                     carrinho.addItem(imagePaths[index], prices[index]);
-                    frame.dispose();
                 });
 
                 JPanel imagePanel = new JPanel(new BorderLayout());
