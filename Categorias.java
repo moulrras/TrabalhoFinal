@@ -11,6 +11,14 @@ public class Categorias extends JFrame {
     public Categorias(Carrinho carrinho) {
         this.carrinho = carrinho;
 
+        setTitle("Venda de Camisas");
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        JMenuBar menuBar = new JMenuBar();
+        menuBar.setBackground(Color.BLACK);
+
         JMenuItem menuItemCarrinho = new JMenuItem("Carrinho");
         menuItemCarrinho.setIcon(new ImageIcon("path/to/cart/icon.png"));
         menuItemCarrinho.setForeground(Color.MAGENTA);
@@ -20,13 +28,10 @@ public class Categorias extends JFrame {
                 carrinho.displayCart();
             }
         });
+        menuBar.add(menuItemCarrinho);
 
-        setTitle("Venda de Camisas");
-        setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        setJMenuBar(menuBar);
 
-        // Set background color
         getContentPane().setBackground(Color.BLACK);
         setLayout(new GridBagLayout());
 
@@ -38,14 +43,13 @@ public class Categorias extends JFrame {
         titulo.setForeground(Color.MAGENTA);
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.gridwidth = 1;
+        gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         add(titulo, gbc);
 
-        gbc.gridwidth = 1;
+        gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        // Botão para Camisas de Basquete
         JButton btnBasquete = new JButton("Camisas de Basquete");
         btnBasquete.setFont(new Font("Arial", Font.PLAIN, 18));
         btnBasquete.setBackground(Color.BLACK);
@@ -55,7 +59,6 @@ public class Categorias extends JFrame {
         gbc.gridy = 1;
         add(btnBasquete, gbc);
 
-        // Botão para Camisas de Futebol Nacionais
         JButton btnFutebolNacional = new JButton("Camisas de Futebol Nacionais");
         btnFutebolNacional.setFont(new Font("Arial", Font.PLAIN, 18));
         btnFutebolNacional.setBackground(Color.BLACK);
@@ -65,7 +68,6 @@ public class Categorias extends JFrame {
         gbc.gridy = 2;
         add(btnFutebolNacional, gbc);
 
-        // Botão para Camisas de Futebol Internacionais
         JButton btnFutebolInternacional = new JButton("Camisas de Futebol Internacionais");
         btnFutebolInternacional.setFont(new Font("Arial", Font.PLAIN, 18));
         btnFutebolInternacional.setBackground(Color.BLACK);
@@ -74,6 +76,22 @@ public class Categorias extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 3;
         add(btnFutebolInternacional, gbc);
+
+        // Botão Voltar
+        JButton btnVoltar = new JButton("Voltar");
+        btnVoltar.setFont(new Font("Arial", Font.PLAIN, 16));
+        btnVoltar.setBackground(Color.BLACK);
+        btnVoltar.setForeground(Color.WHITE);
+        btnVoltar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose(); // Fecha a janela atual
+                // Aqui você pode adicionar a lógica para voltar para a tela anterior, se necessário
+            }
+        });
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        add(btnVoltar, gbc);
 
         btnBasquete.addActionListener(new ActionListener() {
             @Override
@@ -95,6 +113,10 @@ public class Categorias extends JFrame {
                 new CamisaFutebolInternacional(carrinho).display();
             }
         });
+    }
+
+    public Categorias() {
+
     }
 
     public static void main(String[] args) {
