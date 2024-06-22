@@ -45,7 +45,7 @@ public class Clientes {
                 int idade = Integer.parseInt(txtIdade.getText());
 
                 JOptionPane.showMessageDialog(null,
-                                "Nome: " + nome + "\n" +
+                        "Nome: " + nome + "\n" +
                                 "CPF: " + cpf + "\n" +
                                 "Sexo: " + sexo + "\n" +
                                 "Endereço: " + endereço + "\n " + "Idade: "+ idade);
