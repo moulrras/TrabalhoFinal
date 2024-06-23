@@ -77,7 +77,6 @@ public class Categorias extends JFrame {
         gbc.gridy = 3;
         add(btnFutebolInternacional, gbc);
 
-        // Botão Voltar
         JButton btnVoltar = new JButton("Voltar");
         btnVoltar.setFont(new Font("Arial", Font.PLAIN, 16));
         btnVoltar.setBackground(Color.BLACK);
@@ -85,8 +84,7 @@ public class Categorias extends JFrame {
         btnVoltar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose(); // Fecha a janela atual
-                // Aqui você pode adicionar a lógica para voltar para a tela anterior, se necessário
+                dispose();
             }
         });
         gbc.gridx = 0;
