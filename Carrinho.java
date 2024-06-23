@@ -40,7 +40,7 @@ public class Carrinho {
     public double getTotalValueComDesconto() {
         double total = getTotalValue();
         if (cupomAplicado.equals("Camisa10")) {
-            total *= 0.9; // Aplica 10% de desconto se o cupom "Camisa10" estiver aplicado
+            total *= 0.9; 
         }
         return total;
     }
@@ -80,7 +80,6 @@ public class Carrinho {
         totalLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(totalLabel);
 
-        // Adiciona campo de texto e botão para adicionar o cupom manualmente
         JPanel cupomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JLabel cupomLabel = new JLabel("Cupom:");
         JButton aplicarCupomButton = new JButton("Aplicar Cupom");
@@ -139,7 +138,7 @@ public class Carrinho {
             JOptionPane.showMessageDialog(null, "Cupom inválido", "Erro", JOptionPane.ERROR_MESSAGE);
             cupomAplicado = "";
         }
-        // Atualiza o valor total exibido com ou sem desconto
+    
         totalLabel.setText("Valor Total: R$ " + String.format("%.2f", getTotalValueComDesconto()));
     }
 
