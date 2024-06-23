@@ -91,6 +91,26 @@ public class TelaInicial extends JFrame {
         gbc.gridy = 4;
         add(btnVerReclamacoes, gbc);
 
+        JButton btnCadastrarFuncionarios = new JButton("Cadastrar Funcionários");
+        btnCadastrarFuncionarios.setIcon(new ImageIcon("path/to/funcionarios/icon.png"));
+        btnCadastrarFuncionarios.setFont(new Font("Arial", Font.PLAIN, 18));
+        btnCadastrarFuncionarios.setBackground(Color.BLACK);
+        btnCadastrarFuncionarios.setForeground(Color.MAGENTA);
+        btnCadastrarFuncionarios.setHorizontalAlignment(SwingConstants.LEFT);
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        add(btnCadastrarFuncionarios, gbc);
+
+        JButton btnNovidades = new JButton("Novidades");
+        btnNovidades.setIcon(new ImageIcon("path/to/new/icon.png"));
+        btnNovidades.setFont(new Font("Arial", Font.PLAIN, 18));
+        btnNovidades.setBackground(Color.BLACK);
+        btnNovidades.setForeground(Color.MAGENTA);
+        btnNovidades.setHorizontalAlignment(SwingConstants.LEFT);
+        gbc.gridx = 0;
+        gbc.gridy = 6;
+        add(btnNovidades, gbc);
+
         btnCadastroClientes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -120,6 +140,22 @@ public class TelaInicial extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 ReclamacoesFeitas reclamacoesFeitas = new ReclamacoesFeitas();
                 reclamacoesFeitas.setVisible(true);
+            }
+        });
+
+        btnCadastrarFuncionarios.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GerenciarFuncionarios gerenciarFuncionarios = new GerenciarFuncionarios();
+                gerenciarFuncionarios.setVisible(true);
+            }
+        });
+
+        btnNovidades.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CategoriasChegando categoriasChegando = new CategoriasChegando(carrinho);
+                categoriasChegando.setVisible(true);
             }
         });
     }
