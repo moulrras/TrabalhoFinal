@@ -17,7 +17,6 @@ public class ReclamacoesFeitas extends JFrame {
         txtAreaReclamacoes.setEditable(false);
         txtAreaReclamacoes.setFont(new Font("Arial", Font.PLAIN, 14));
 
-        // Retrieve complaints from Reclamacao class
         ArrayList<String> reclamacoes = Reclamacao.reclamacoes;
         for (String reclamacao : reclamacoes) {
             txtAreaReclamacoes.append(reclamacao + "\n\n");
